@@ -1,31 +1,61 @@
 # IBM EXA Integration
+Powered by [Exa](https://exa.ai)
 
-This project provides integration capabilities with IBM's EXA platform.
+This project combines IBM WatsonX AI with Exa's web search to create a smart AI assistant that can search the internet and answer questions with up-to-date information.
 
-## Requirements
+## What it Does
 
-- Python 3.8 or higher
-- pip (Python package installer)
+1. You ask a question
+2. The AI (using IBM WatsonX) decides if it needs to search the web
+3. If needed, it uses Exa to search the internet
+4. The AI then gives you an answer using both the search results and its own knowledge
+5. It includes sources and links in its answers
+
+## Features
+
+- Uses IBM WatsonX's Mistral model for smart decision making
+- Searches the web using Exa for current information
+- Automatically cites sources in answers
+- Handles both simple questions and complex topics
 
 ## Setup
 
-1. Clone the repository:
-```bash
-git clone https://github.com/yourusername/ibm-exa.git
-cd ibm-exa
+1. You need two API keys:
+   - IBM WatsonX API key
+   - Exa API key
+
+2. Create a `.env` file with your keys:
+```
+IBM_WATSONX_API_KEY=your_ibm_key_here
+IBM_WATSONX_URL=https://us-south.ml.cloud.ibm.com
+IBM_WATSONX_PROJECT_ID=your_project_id_here
+EXA_API_KEY=your_exa_key_here
 ```
 
-2. Create a virtual environment and activate it:
+3. Install Python requirements:
 ```bash
-python3 -m venv venv
+python -m venv venv
 source venv/bin/activate  # On Unix/macOS
-# or
-.\venv\Scripts\activate  # On Windows
+pip install -r requirements.txt
 ```
 
-3. Install dependencies:
+## How to Use
+
+Run the example:
 ```bash
-pip install -r requirements.txt
+python -m src.example
+```
+
+Or use in your code:
+```python
+from src.model import WatsonXModel
+
+# Initialize the model
+model = WatsonXModel(exa_api_key="your_exa_key")
+
+# Ask a question
+answer = model.ask("What are the latest developments in AI regulation?")
+print(answer)
 ```
 
 ## Project Structure
@@ -33,26 +63,25 @@ pip install -r requirements.txt
 ```
 ibm-exa/
 ├── src/
-│   └── __init__.py
-├── tests/
-│   └── __init__.py
-├── pyproject.toml
-├── requirements.txt
-└── README.md
+│   ├── client.py      # IBM WatsonX setup
+│   ├── exa_client.py  # Web search client
+│   ├── model.py       # Main AI model
+│   ├── tools.py       # Search tool definition
+│   └── example.py     # Usage example
+├── .env              # Your API keys
+└── requirements.txt  # Python packages needed
 ```
 
-## Usage
+## How it Works
 
-[Add usage instructions here]
+1. **Tool Calling**: The AI can decide when it needs to search the web for information
+2. **Web Search**: Uses Exa's API to find relevant and current information
+3. **Smart Answers**: Combines search results with the AI's knowledge
 
-## Contributing
+## Requirements
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+- [Python 3.8](https://www.python.org/downloads/) or higher
+- [IBM WatsonX](https://www.ibm.com/products/watsonx-ai) account and API key
+- [Exa API](https://dashboard.exa.ai/api-keys) key
 
-## License
 
-This project is licensed under the MIT License - see the LICENSE file for details. 
