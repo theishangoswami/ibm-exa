@@ -1,0 +1,5 @@
+requests==2.32.3
+python-dotenv==1.0.0
+pytest==7.4.3
+ibm-watsonx-ai>=1.1.0
+exa-py>=1.8.7
