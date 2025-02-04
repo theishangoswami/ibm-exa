@@ -1,19 +1,12 @@
 """
-Example usage of the WatsonX AI model with web search capabilities.
+Example of WatsonX AI tool calling.
 """
 import os
-import logging
 from dotenv import load_dotenv
-from .model import WatsonXModel, AvailableModels
-
-# Set up logging
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
+from .model import WatsonXModel
 
 def main():
-    print("Starting WatsonX AI example...")
-    
-    # Load environment variables
+    # Load Exa API key
     load_dotenv()
     exa_api_key = os.getenv('EXA_API_KEY')
     
@@ -21,26 +14,17 @@ def main():
         print("Error: EXA_API_KEY not found in environment variables")
         return
     
-    try:
-        # Initialize model with Exa search capability
-        print("\nInitializing Mixtral model with web search...")
-        model = WatsonXModel(exa_api_key=exa_api_key)
-        
-        # Example 1: Current events question with web search
-        question = "What is the recent project stargate?"
-        print("\n=== Example 1: Current Events Question (With Web Search) ===")
-        print("Question:", question)
-        print("Searching and thinking...")
-        
-        answer = model.ask_with_search(question)
-       
-        print("\nAnswer:", answer)
-     
-        
-    except Exception as e:
-        logger.error(f"An error occurred: {str(e)}", exc_info=True)
-        print("\nAn error occurred while running the example. Please check the logs for details.")
+    # Initialize model
+    model = WatsonXModel(exa_api_key=exa_api_key)
+    
+    # Ask a question that requires web search
+    question = "What are the latest developments in AI regulation in 2024?"
+    print("\nQuestion:", question)
+    print("Processing...")
+    
+    # Get response using tool calling
+    answer = model.ask(question)
+    print("\nAnswer:", answer)
 
 if __name__ == "__main__":
-    main()
-    print("\nExample completed!") 
+    main() 
