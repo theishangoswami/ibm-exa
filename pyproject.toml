@@ -6,7 +6,7 @@ build-backend = "setuptools.build_meta"
 name = "ibm-exa"
 version = "0.1.0"
 authors = [
-    { name = "Your Name", email = "your.email@example.com" }
+    { name = "Exa Labs", email = "hello@exa.ai" }
 ]
 description = "IBM EXA Integration Package"
 readme = "README.md"
@@ -22,5 +22,5 @@ classifiers = [
 ]
 
 [project.urls]
-"Homepage" = "https://github.com/yourusername/ibm-exa"
-"Bug Tracker" = "https://github.com/yourusername/ibm-exa/issues" 
+"Homepage" = "https://github.com/exa-labs/ibm-exa"
+"Bug Tracker" = "https://github.com/exa-labs/ibm-exa/issues" 
