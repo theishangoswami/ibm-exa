@@ -1,6 +1,8 @@
 # IBM EXA Integration
 Powered by [Exa](https://exa.ai)
 
+[Demo Video](https://screen.studio/share/0kMUnBOQ)
+
 This project combines IBM WatsonX AI with Exa's web search to create a smart AI assistant that can search the internet and answer questions with up-to-date information.
 
 ## What it Does
@@ -41,12 +43,17 @@ pip install -r requirements.txt
 
 ## How to Use
 
-Run the example:
+There are several ways to try out this integration:
+
+1. **Using Jupyter Notebook**:
+   Run the `ibm_exa_integration.ipynb` notebook to interactively try out the integration in a notebook environment.
+
+2. **Running the Example Script**:
 ```bash
 python -m src.example
 ```
 
-Or use in your code:
+3. **Using in Your Code**:
 ```python
 from src.model import WatsonXModel
 
